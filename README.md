@@ -1,4 +1,72 @@
 # Cross-Collaborative-AI-Platform
+
+A self-healing, multi-agent travel planning platform built with TypeScript, Node.js, Express, and React. The platform leverages a sequential token-passing orchestration architecture to process complex travel queries across specialized agents, featuring a real-time failover pipeline that dynamically switches LLM providers when encountering rate limits or API disruptions.
+
+## 🚀 Local Installation & Setup
+
+### Prerequisites
+
+* **Node.js:** version `v18+` must be installed on your machine.
+
+### 1. Clone the Repository
+
+```bash
+git clone GIT_REPO
+cd REPO_NAME
+
+```
+
+### 2. Configure Environment Variables
+
+#### Backend Configuration
+
+Navigate to the `backend` folder and create a `.env` file:
+
+```bash
+cd backend
+touch .env
+
+```
+
+Populate `backend/.env` with your credentials:
+
+```env
+PORT=3001
+GEMINI_API_KEY=your_gemini_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
+NODE_ENV=development
+
+```
+
+#### Frontend Configuration
+
+Navigate to the `frontend` folder and create a `.env.development` file:
+
+```bash
+cd ../frontend
+touch .env.development
+
+```
+
+Populate `frontend/.env.development` with the local API target route:
+
+```env
+VITE_API_URL=http://localhost:3001
+
+```
+
+---
+
+## 🏃‍♂️ Running the Platform Locally
+
+> 💡 **Note:** You will need two separate terminal windows open to execute both services simultaneously.
+
+### Start the Backend Engine
+
+Open your first terminal and run:
+
+```bash
+cd backend
 npm install
 npm run build
 npm start
