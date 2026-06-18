@@ -3,7 +3,9 @@ import { Plane, ShieldAlert, Compass, Calendar, Wallet, Layers, Loader2, History
 import type { OrchestratorResult, AuditLog } from './types';
 import { isSafeError } from './utils/errors';
 
-const API_BASE = 'http://localhost:3001/api';
+const API_BASE = import.meta.env.VITE_API_URL 
+  ? `${import.meta.env.VITE_API_URL}/api` 
+  : 'http://localhost:3001/api';
 
 export default function App() {
   const [prompt, setPrompt] = useState('');
