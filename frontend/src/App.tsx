@@ -67,10 +67,22 @@ export default function App() {
         } else {
           setError('An unexpected network or engine runtime event occurred.');
         }
-        setIsBackendLive(false); // Set status to offline on network request exceptions
+        setIsBackendLive(false);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSelectAuditLog = (log: AuditLog) => {
+    // Update the results pane with the historical agent ledger data
+    setResult({
+      requestId: log.id,
+      synthesizedAnswer: log.finalResponse,
+      agentTraces: log.traces
+    });
+  
+    // Map the historical prompt string right back into the main text box
+    setPrompt(log.userPrompt || '');
   };
 
   return (
@@ -214,7 +226,8 @@ export default function App() {
                 auditLogs.map((log) => (
                   <div 
                     key={log.id} 
-                    onClick={() => setResult({ requestId: log.id, synthesizedAnswer: log.finalResponse, agentTraces: log.traces })}
+                    onClick={() => handleSelectAuditLog(log)}
+                    // onClick={() => setResult({ requestId: log.id, synthesizedAnswer: log.finalResponse, agentTraces: log.traces })}
                     className="p-3 bg-slate-950/40 border border-slate-800/80 hover:border-indigo-500/40 rounded-lg cursor-pointer transition text-left space-y-1.5"
                   >
                     <div className="flex justify-between items-center text-[10px] font-mono text-slate-500">
